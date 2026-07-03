@@ -1,0 +1,41 @@
+{
+  "featured": [
+    {
+      "label": "Main Website",
+      "description": "The central home for profile, products, services, or portfolio.",
+      "href": "https://example.com",
+      "tag": "Home"
+    },
+    {
+      "label": "Project Universe",
+      "description": "A curated path into active experiments, builds, and public work.",
+      "href": "https://example.com/projects",
+      "tag": "Projects"
+    },
+    {
+      "label": "Contact Channel",
+      "description": "A direct route for inquiries, collaboration, and updates.",
+      "href": "mailto:hello@example.com",
+      "tag": "Contact"
+    }
+  ],
+  "socials": [
+    {
+      "label": "GitHub",
+      "href": "https://github.com/"
+    },
+    {
+      "label": "YouTube",
+      "href": "https://youtube.com/"
+    },
+    {
+      "label": "Instagram",
+      "href": "https://instagram.com/"
+    },
+    {
+      "label": "Telegram",
+      "href": "https://t.me/"
+    }
+  ]
+}
+

@@ -1,0 +1,18 @@
+{
+  "name": "RooWeb Universe",
+  "handle": "@rooweb",
+  "headline": "A personal command portal for projects, links, ideas, and digital presence.",
+  "bio": "A clean starting point for RK's universe of links. Replace this copy with the final identity, offers, socials, and project destinations.",
+  "status": "Open for experiments",
+  "location": "Built in RooWeb",
+  "avatarInitials": "RW",
+  "primaryAction": {
+    "label": "Start Here",
+    "href": "#featured"
+  },
+  "secondaryAction": {
+    "label": "Send Updates",
+    "href": "mailto:hello@example.com"
+  }
+}
+

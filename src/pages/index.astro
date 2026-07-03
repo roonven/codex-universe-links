@@ -1,0 +1,83 @@
+---
+import profile from "../../content/profile.json";
+import links from "../../content/links.json";
+import "../styles/global.css";
+
+const base = import.meta.env.BASE_URL;
+const assetBase = base.endsWith("/") ? base : `${base}/`;
+const backgroundUrl = `${assetBase}assets/universe-portal.png`;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="A futuristic personal link hub built with RooWeb and Astro."
+    />
+    <title>{profile.name}</title>
+  </head>
+  <body>
+    <main class="shell">
+      <section class="profile-panel" aria-label="Profile hub">
+        <div class="cosmic-backdrop" style={`background-image: url('${backgroundUrl}')`}></div>
+        <div class="noise-layer" aria-hidden="true"></div>
+
+        <header class="hero">
+          <div class="avatar" aria-hidden="true">{profile.avatarInitials}</div>
+          <p class="eyebrow">{profile.status}</p>
+          <h1>{profile.name}</h1>
+          <p class="handle">{profile.handle}</p>
+          <p class="headline">{profile.headline}</p>
+          <p class="bio">{profile.bio}</p>
+
+          <div class="hero-actions" aria-label="Primary actions">
+            <a class="button primary" href={profile.primaryAction.href}>
+              {profile.primaryAction.label}
+            </a>
+            <a class="button secondary" href={profile.secondaryAction.href}>
+              {profile.secondaryAction.label}
+            </a>
+          </div>
+        </header>
+
+        <section class="orbit-status" aria-label="Profile metadata">
+          <div>
+            <span>Signal</span>
+            <strong>Live Draft</strong>
+          </div>
+          <div>
+            <span>Base</span>
+            <strong>{profile.location}</strong>
+          </div>
+          <div>
+            <span>Stack</span>
+            <strong>Astro</strong>
+          </div>
+        </section>
+
+        <section class="links" id="featured" aria-label="Featured links">
+          {
+            links.featured.map((item) => (
+              <a class="link-card" href={item.href}>
+                <span class="tag">{item.tag}</span>
+                <span class="link-title">{item.label}</span>
+                <span class="link-description">{item.description}</span>
+              </a>
+            ))
+          }
+        </section>
+
+        <nav class="socials" aria-label="Social links">
+          {
+            links.socials.map((item) => (
+              <a href={item.href}>{item.label}</a>
+            ))
+          }
+        </nav>
+      </section>
+    </main>
+  </body>
+</html>
