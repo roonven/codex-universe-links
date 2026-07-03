@@ -33,6 +33,7 @@ body {
     radial-gradient(circle at 20% 15%, rgba(72, 243, 199, 0.18), transparent 32rem),
     radial-gradient(circle at 80% 10%, rgba(110, 231, 249, 0.14), transparent 28rem),
     linear-gradient(145deg, #02040a 0%, #07101a 45%, #030509 100%);
+  overflow-x: hidden;
 }
 
 a {
@@ -57,6 +58,7 @@ a {
   background: var(--panel);
   box-shadow: var(--shadow);
   backdrop-filter: blur(24px);
+  animation: panel-arrive 760ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
 }
 
 .cosmic-backdrop {
@@ -64,9 +66,104 @@ a {
   inset: 0;
   z-index: -3;
   background-position: center top;
-  background-size: cover;
-  opacity: 0.6;
-  transform: scale(1.02);
+  background-size: 112% auto;
+  opacity: 0.68;
+  transform: scale(1.04);
+  animation: nebula-drift 18s ease-in-out infinite alternate;
+  will-change: transform, background-position, opacity;
+}
+
+.aurora-field {
+  position: absolute;
+  inset: -18% -28%;
+  z-index: -2;
+  opacity: 0.56;
+  background:
+    conic-gradient(from 110deg at 50% 36%, transparent 0deg, rgba(110, 231, 249, 0.18) 56deg, transparent 118deg, rgba(255, 214, 139, 0.11) 180deg, transparent 250deg, rgba(72, 243, 199, 0.15) 315deg, transparent 360deg);
+  filter: blur(24px);
+  animation: aurora-turn 26s linear infinite;
+}
+
+.orbit-field {
+  position: absolute;
+  inset: 70px -90px auto;
+  height: 520px;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.orbit-field span {
+  position: absolute;
+  inset: auto 0 0;
+  height: 300px;
+  border-top: 1px solid rgba(180, 226, 255, 0.18);
+  border-radius: 50%;
+  transform-origin: center bottom;
+  animation: orbit-sweep 14s ease-in-out infinite alternate;
+}
+
+.orbit-field span:nth-child(1) {
+  transform: rotate(-13deg);
+}
+
+.orbit-field span:nth-child(2) {
+  height: 360px;
+  border-color: rgba(255, 214, 139, 0.12);
+  animation-delay: -4s;
+  transform: rotate(5deg);
+}
+
+.orbit-field span:nth-child(3) {
+  height: 440px;
+  border-color: rgba(72, 243, 199, 0.13);
+  animation-delay: -9s;
+  transform: rotate(16deg);
+}
+
+.particle-field {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.particle-field span {
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.78);
+  box-shadow: 0 0 18px rgba(110, 231, 249, 0.78);
+  animation: star-float 9s ease-in-out infinite;
+}
+
+.particle-field span:nth-child(1) {
+  left: 14%;
+  top: 20%;
+}
+
+.particle-field span:nth-child(2) {
+  left: 74%;
+  top: 18%;
+  animation-delay: -2s;
+}
+
+.particle-field span:nth-child(3) {
+  left: 86%;
+  top: 42%;
+  animation-delay: -4s;
+}
+
+.particle-field span:nth-child(4) {
+  left: 18%;
+  top: 60%;
+  animation-delay: -6s;
+}
+
+.particle-field span:nth-child(5) {
+  left: 50%;
+  top: 14%;
+  animation-delay: -8s;
 }
 
 .profile-panel::before,
@@ -95,12 +192,13 @@ a {
   position: absolute;
   inset: 0;
   z-index: -1;
-  opacity: 0.22;
+  opacity: 0.2;
   background-image:
     linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
     linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
   background-size: 34px 34px;
   mask-image: linear-gradient(to bottom, black, transparent 76%);
+  animation: grid-drift 20s linear infinite;
 }
 
 .hero {
@@ -126,6 +224,23 @@ a {
   box-shadow:
     0 0 32px rgba(110, 231, 249, 0.18),
     inset 0 0 24px rgba(255, 255, 255, 0.08);
+  animation:
+    avatar-rise 700ms cubic-bezier(0.2, 0.8, 0.2, 1) both 120ms,
+    avatar-float 5.6s ease-in-out infinite 900ms;
+  position: relative;
+}
+
+.avatar::after {
+  position: absolute;
+  content: "";
+  inset: 50% auto auto 50%;
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: rgba(110, 231, 249, 0.5);
+  box-shadow: 0 0 18px rgba(110, 231, 249, 0.72);
+  transform: translate(-50%, 58px);
+  animation: pulse-node 2.8s ease-in-out infinite;
 }
 
 .eyebrow,
@@ -143,6 +258,15 @@ h1 {
   font-size: clamp(2.25rem, 8vw, 4rem);
   line-height: 0.96;
   letter-spacing: 0;
+  background: linear-gradient(100deg, #ffffff 0%, #eff9ff 34%, #9ff7ff 48%, #ffffff 62%, #dce8f2 100%);
+  background-size: 240% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0 18px 58px rgba(110, 231, 249, 0.12);
+  animation:
+    title-rise 720ms cubic-bezier(0.2, 0.8, 0.2, 1) both 220ms,
+    title-shimmer 5.4s ease-in-out infinite 1s;
 }
 
 .handle {
@@ -158,6 +282,7 @@ h1 {
   font-size: 1.03rem;
   line-height: 1.55;
   font-weight: 650;
+  animation: content-rise 680ms cubic-bezier(0.2, 0.8, 0.2, 1) both 320ms;
 }
 
 .bio {
@@ -166,6 +291,7 @@ h1 {
   color: var(--muted);
   font-size: 0.95rem;
   line-height: 1.65;
+  animation: content-rise 680ms cubic-bezier(0.2, 0.8, 0.2, 1) both 420ms;
 }
 
 .hero-actions {
@@ -173,9 +299,12 @@ h1 {
   grid-template-columns: 1fr 1fr;
   gap: 10px;
   margin-top: 24px;
+  animation: content-rise 680ms cubic-bezier(0.2, 0.8, 0.2, 1) both 520ms;
 }
 
 .button {
+  position: relative;
+  overflow: hidden;
   min-height: 46px;
   display: inline-flex;
   align-items: center;
@@ -187,6 +316,16 @@ h1 {
     transform 160ms ease,
     border-color 160ms ease,
     background 160ms ease;
+}
+
+.button::after {
+  position: absolute;
+  content: "";
+  inset: -40% auto -40% -70%;
+  width: 46%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.42), transparent);
+  transform: skewX(-18deg);
+  animation: button-sheen 4.8s ease-in-out infinite;
 }
 
 .button:hover,
@@ -211,6 +350,7 @@ h1 {
   grid-template-columns: repeat(3, 1fr);
   gap: 8px;
   padding: 0 20px 18px;
+  animation: content-rise 680ms cubic-bezier(0.2, 0.8, 0.2, 1) both 620ms;
 }
 
 .orbit-status div {
@@ -246,6 +386,8 @@ h1 {
 }
 
 .link-card {
+  position: relative;
+  overflow: hidden;
   display: grid;
   gap: 7px;
   min-height: 102px;
@@ -259,6 +401,34 @@ h1 {
     transform 160ms ease,
     border-color 160ms ease,
     background 160ms ease;
+  animation: card-arrive 620ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+.link-card:nth-child(1) {
+  animation-delay: 720ms;
+}
+
+.link-card:nth-child(2) {
+  animation-delay: 820ms;
+}
+
+.link-card:nth-child(3) {
+  animation-delay: 920ms;
+}
+
+.card-glow {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  background:
+    radial-gradient(circle at 16% 20%, rgba(110, 231, 249, 0.22), transparent 14rem),
+    linear-gradient(110deg, transparent, rgba(255, 255, 255, 0.08), transparent);
+  transition: opacity 180ms ease;
+  animation: link-scan 7s ease-in-out infinite;
+}
+
+.link-card > :not(.card-glow) {
+  position: relative;
 }
 
 .link-card:hover {
@@ -266,6 +436,10 @@ h1 {
   background:
     linear-gradient(135deg, rgba(110, 231, 249, 0.16), rgba(72, 243, 199, 0.07)),
     var(--panel-strong);
+}
+
+.link-card:hover .card-glow {
+  opacity: 1;
 }
 
 .link-title {
@@ -285,6 +459,7 @@ h1 {
   gap: 10px;
   justify-content: center;
   padding: 0 20px 28px;
+  animation: content-rise 680ms cubic-bezier(0.2, 0.8, 0.2, 1) both 1050ms;
 }
 
 .socials a {
@@ -308,6 +483,144 @@ h1 {
 .socials a:hover {
   border-color: rgba(255, 214, 139, 0.56);
   color: var(--text);
+}
+
+@keyframes panel-arrive {
+  from {
+    opacity: 0;
+    transform: translateY(18px) scale(0.985);
+  }
+}
+
+@keyframes nebula-drift {
+  0% {
+    background-position: 48% 0%;
+    transform: scale(1.04);
+    opacity: 0.62;
+  }
+
+  100% {
+    background-position: 54% 4%;
+    transform: scale(1.1);
+    opacity: 0.78;
+  }
+}
+
+@keyframes aurora-turn {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes orbit-sweep {
+  to {
+    transform: rotate(20deg) translateY(-8px);
+  }
+}
+
+@keyframes star-float {
+  0%,
+  100% {
+    opacity: 0.28;
+    transform: translate3d(0, 0, 0) scale(0.8);
+  }
+
+  50% {
+    opacity: 0.96;
+    transform: translate3d(10px, -18px, 0) scale(1.18);
+  }
+}
+
+@keyframes grid-drift {
+  to {
+    background-position: 34px 68px;
+  }
+}
+
+@keyframes avatar-rise {
+  from {
+    opacity: 0;
+    transform: translateY(14px) scale(0.94);
+  }
+}
+
+@keyframes avatar-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes pulse-node {
+  0%,
+  100% {
+    opacity: 0.25;
+    transform: translate(-50%, 58px) scale(0.75);
+  }
+
+  50% {
+    opacity: 0.95;
+    transform: translate(-50%, 66px) scale(1.2);
+  }
+}
+
+@keyframes title-rise {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+}
+
+@keyframes title-shimmer {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes content-rise {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+}
+
+@keyframes button-sheen {
+  0%,
+  45% {
+    left: -70%;
+  }
+
+  70%,
+  100% {
+    left: 125%;
+  }
+}
+
+@keyframes card-arrive {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.98);
+  }
+}
+
+@keyframes link-scan {
+  0%,
+  60% {
+    transform: translateX(-35%);
+  }
+
+  100% {
+    transform: translateX(35%);
+  }
 }
 
 @media (max-width: 420px) {
@@ -342,4 +655,3 @@ h1 {
     animation-iteration-count: 1 !important;
   }
 }
-
